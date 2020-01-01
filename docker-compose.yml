@@ -1,0 +1,25 @@
+version: '3'
+
+
+services:
+    db:
+        image: postgres:9.4
+        container_name: 'db'
+        ports:
+            - 5432:5432
+        networks:
+            - my_net
+        environment: 
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_DB=zelda_cookbook
+        volumes:
+            - "db_data:/var/lib/postgresql/data"
+            - "/db:/docker-entrypoint-initdb.d/"
+
+
+
+networks: 
+  my_net:
+volumes:
+    db_data:
