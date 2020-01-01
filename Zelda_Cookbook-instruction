@@ -1,0 +1,37 @@
+Legend of Zelda: Breath of the Wild Cookbook
+
+The new Legend of Zelda game features the ability to gather ingredients from around the world and cook them into different recipes. Each recipe gives Link different benefits such as recovering health and gaining resistance to cold.
+This app provides an easy to use interface that allows the user to see what ingredients are required to make each recipe. No more wasting rare ingredients on failed recipes!
+The application includes 3 components:
+- A database of all the recepies, ingredients etc. ("zelda_cookbook")
+- A node based API server with very basic UI ("backend")
+- A node based UI server ("frontend")
+
+Note that the backend is accessed by HTML pages on the user machine.
+
+Installation instructions:
+DB
+1) Set up a postgres server with a database named "zelda_cookbook"
+2) Make sure that user postgres uses paswwrod postgres and has full priveleges on zelda_cookbook
+
+Backend
+1) install knex
+2) Build - use npm install
+3) Migrade database tables using knex migrate:latest 
+4) Seeds the tables - knex seed:run
+5) Start the service - node server.js
+
+You can check that backend works using curl or a browser on  /api/v1/ingredients    
+
+Important notes:
+ - you can find database connection configuration at knexfile.js
+
+Frontend
+1) Build - use npm install
+2) Start the service - use npm Start
+
+- To check frontend functionality - use browser ( see a beautiful GUI with ingredients and recipes)
+
+Your Task:
+(A) Run this 3 tier-application using docker-compose.
+(B) put both servers behind one nginx reverse proxy, so that the user is not aware that they are different servers (Note: you will need to fix app URLs in apiCalls.js) 
